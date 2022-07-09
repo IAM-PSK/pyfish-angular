@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+</head>
+<body>
+
+
+  <div class="container">
+    <div class="row content">
+      <div class="col debug">
+        <h1 align="center">จัดการ</h1>
+        <div class="row">
+          <div class="col d-flex justify-content-end">
+            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-danger">เพิ่ม <i class="bi bi-plus"></i></button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>ลำดับ</td>
+              <td>MAC</td>
+              <td>ชื่อ</td>
+              <td>สร้างเมื่อ</td>
+              <td>เข้าสู่ระบบครั้งสุดท้าย</td>
+              <td>สถานะ</td>
+              <td>จัดการ</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of user_info let i = index">
+              <td>{{i+1}}</td>
+              <td>{{user.user_mac}}</td>
+              <td>{{user.user_name}}</td>
+              <td>{{user.user_create_when | dfnsParseIso | dfnsAddYears:543 | dfnsFormat:'d MMMM yyyy HH:mm:ss'   }}</td>
+              <td>{{user.user_last_login | dfnsParseIso | dfnsAddYears:543 | dfnsFormat:'d MMMM yyyy HH:mm:ss' }}</td>
+              <td class="ops-text" [ngClass]="user.user_status == 1?'text-success':'text-danger'"><u>{{user.user_status == 1 ?'เปิดใช้งาน':'ปิดใช้งาน'}}</u></td>
+              <td><span class="p-3"><i data-bs-toggle="modal" data-bs-target="#update-modal" (click)="get_1_user(user.user_mac)" class="bi bi-pencil-square text-primary bi-ops fs-3"></i></span>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn btn-danger" (click)="logout()">out</button>
+</body>
+</html>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form name="add_form" #add_form="ngForm" (submit)="add_user(add_form.value);this.add_form.reset()">
+      <div class="modal-body" >
+          <!-- TODO จัดการ Placeholder Format ของ MAC -->
+          <label  class="form-label">MAC</label>
+          <input  oninput="this.value = this.value.toUpperCase()" [dropSpecialCharacters]="false" placeholder="AA-AA-AA-AA-AA-AA" ngModel [patterns]="customPatterns" mask="00-00-00-00-00-00" name="mac" type="text" class="form-control">
+          <label class="form-label pt-3">ชื่อ</label>
+          <input onsubmit="this.value = ''" ngModel name="name" placeholder="ชื่อ-นามสกุล" type="text" class="form-control" >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">เพิ่ม<i class="bi bi-plus"></i></button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="update-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form #update_form="ngForm" (submit)="update_user(update_form.value);this.add_form.reset()">
+      <div class="modal-body" >
+          <label  class="form-label">MAC</label>
+          <input ngModel [patterns]="customPatterns" mask="AA-AA-AA-AA" name="mac" type="text" class="form-control" value="{{mac.mac}}" readonly>
+          <label class="form-label pt-3">ชื่อ</label>
+          <input ngModel name="name" placeholder="ชื่อ-นามสกุล" type="text" class="form-control" value="{{mac.name}}">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">อัปเดต<i class="bi bi-plus"></i></button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

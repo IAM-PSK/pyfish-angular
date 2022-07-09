@@ -1,0 +1,15 @@
+.bi-ops{
+  cursor: pointer;
+}
+
+.content{
+  padding-top: 5%;
+}
+.ops-text{
+
+}
+
+.ops-text:hover{
+  font-weight:600;
+  cursor: pointer;
+}
