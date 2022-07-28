@@ -273,6 +273,9 @@ getdashboard(){
   this.api.get_dashboard().subscribe(data=>{
     this.dashboard = data
   })
+  this.api.update_expire().subscribe(data=>{
+
+  })
 }
 
 addprogram(data:any){
@@ -353,6 +356,10 @@ rent_form_init(){
   this.function_id = '1'
   this.rent_price = '0'
   this.get_program(this.mac.mac,'true')
+}
+
+update_expire(){
+
 }
 
 }

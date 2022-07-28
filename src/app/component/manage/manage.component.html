@@ -26,11 +26,11 @@
             <div class="row">
               <div class="col text-dashboard">จำนวนโปรแกรมที่มี : {{dashboard.program_count}} โปรแกรม
                 <i data-bs-toggle="modal" data-bs-target="#add_program" (click)="getprogram()"  class="link bi bi-pencil-square"></i> </div>
-              <div class="col text-dashboard">รายได้วันนี้ : {{dashboard.rent_price_today | mask: 'separator':','}} บาท </div>
+              <div class="col text-dashboard">รายได้วันนี้ : {{dashboard.rent_price_today | mask: 'separator':',' }} บาท </div>
             </div>
             <div class="row">
               <div class="col text-dashboard">จำนวนการเช่าที่เปิดใช้งาน : {{dashboard.rent_open}} รายการ </div>
-              <div class="col text-dashboard">เฉลี่ยเงินรายชั่วโมง : {{dashboard.price_per_hours | mask: 'separator.2':','}} บาท </div>
+              <div class="col text-dashboard">เฉลี่ยเงินรายชั่วโมง : {{dashboard.price_per_hours | mask: 'separator.2':',' || '0'}} บาท </div>
             </div>
             <div class="row">
               <div class="col text-dashboard">จำนวนประวัติการเช่าทั้งหมด : {{dashboard.rent_all}} รายการ </div>

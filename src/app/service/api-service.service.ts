@@ -12,14 +12,14 @@ import Swal from 'sweetalert2';
 
 export class ApiServiceService {
 
-  use_api = true
+  use_api = false
   host_5:string = ''
 
   constructor(private router:Router, private http:HttpClient) {
     if(this.use_api == true){
       this.host_5 = "http://34.124.252.141/"
     }else{
-      this.host_5 = "http://127.0.0.1:2499/"
+      this.host_5 = "http://localhost:2499/"
     }
   }
 
@@ -137,6 +137,12 @@ export class ApiServiceService {
 
     const url = this.host_5+"login/web/auth"
 
+    return this.http.get(url,{headers:this.init()})
+  }
+
+  update_expire(){
+    const url = this.host_5+"login/update_expire"
+    console.log('it me')
     return this.http.get(url,{headers:this.init()})
   }
 
