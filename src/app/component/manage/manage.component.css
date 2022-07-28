@@ -13,3 +13,26 @@
   font-weight:600;
   cursor: pointer;
 }
+
+.link{
+  color:dodgerblue;
+  cursor: pointer;
+}
+
+.pat{
+  padding-top: 20px;
+}
+
+.link:hover{
+  font-weight: 600;
+}
+
+.text-tooltip{
+  font-weight:600;
+  cursor: help;
+}
+
+.text-dashboard{
+  padding-top: 10px;
+  font-size: 14pt;
+}

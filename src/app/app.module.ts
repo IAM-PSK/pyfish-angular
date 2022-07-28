@@ -12,7 +12,7 @@ import { DateFnsConfigurationService, DateFnsModule } from 'ngx-date-fns';
 import { th } from 'date-fns/locale';
 import { registerLocaleData } from '@angular/common';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
-
+import {NgxPaginationModule} from 'ngx-pagination';
 export const option: Partial<IConfig> | (() => Partial<IConfig>) = {
 
 };
@@ -29,7 +29,7 @@ frenchConfig.setLocale(th);
   imports: [
     [SweetAlert2Module.forRoot()],
     ReactiveFormsModule,
-    BrowserModule,
+    [BrowserModule, NgxPaginationModule],
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
