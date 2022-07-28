@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 
 export class ApiServiceService {
 
-  use_api = false
+  use_api = true
   host_5:string = ''
 
   constructor(private router:Router, private http:HttpClient) {
