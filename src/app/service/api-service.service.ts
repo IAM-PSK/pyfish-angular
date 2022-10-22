@@ -17,7 +17,7 @@ export class ApiServiceService {
 
   constructor(private router:Router, private http:HttpClient) {
     if(this.use_api == true){
-      this.host_5 = "http://34.124.252.141/"
+      this.host_5 = "http://35.222.212.40/"
     }else{
       this.host_5 = "http://localhost:2499/"
     }
